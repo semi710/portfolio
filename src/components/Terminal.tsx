@@ -189,7 +189,7 @@ const Terminal = () => {
   return (
     <Wrapper data-testid="terminal-wrapper" ref={containerRef}>
       {hints.length > 1 && (
-        <div>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
           {hints.map(hCmd => (
             <Hints key={hCmd}>{hCmd}</Hints>
           ))}
