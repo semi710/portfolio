@@ -35,6 +35,11 @@ const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
     background-color: ${({ theme }) => theme.colors?.body};
     color: ${({ theme }) => theme.colors?.text[100]};
     min-height: 100vh;
+    font-size: 0.9rem;
+
+    @media (max-width: 550px) {
+      font-size: 0.8rem;
+    }
   }
 
   #root {

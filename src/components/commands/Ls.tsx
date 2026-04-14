@@ -4,7 +4,14 @@ import { availableFiles } from "./files";
 const Ls: React.FC = () => {
   return (
     <Wrapper data-testid="ls">
-      <div style={{ display: "flex", gap: "30px", flexWrap: "wrap" }}>
+      <div
+        style={{
+          display: "flex",
+          gap: "30px",
+          rowGap: "8px",
+          flexWrap: "wrap",
+        }}
+      >
         {availableFiles.map(({ name, type }) => (
           <span key={name} style={{ color: "#05CE91" }}>
             {name}.{type}

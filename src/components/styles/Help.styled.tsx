@@ -7,6 +7,10 @@ export const HelpWrapper = styled.div`
 
 export const CmdList = styled.div`
   margin-bottom: 0.25rem;
+
+  @media (max-width: 550px) {
+    margin-bottom: 0.5rem;
+  }
 `;
 
 export const Cmd = styled.span`

@@ -8,6 +8,119 @@ const GITHUB_PDF_URL =
 const RAW_PDF_URL =
   "https://raw.githubusercontent.com/semi710/semi710/master/cv/semi.niksingh710.pdf";
 
+// Helper to convert URLs in text to clickable links
+const linkifyText = (text: string): JSX.Element => {
+  // Split line by label if it has one (e.g., "Email:", "GitHub:")
+  const labelMatch = text.match(
+    /^(\s*(?:Email|GitHub|Telegram|Matrix|X|LinkedIn):\s*)(.+)$/
+  );
+
+  if (labelMatch) {
+    const [, labelPart, valuePart] = labelMatch;
+    const linkifiedValue = linkifyValue(valuePart.trim());
+
+    return (
+      <>
+        <span>{labelPart}</span>
+        {linkifiedValue}
+      </>
+    );
+  }
+
+  // No label, just linkify the whole thing
+  return linkifyValue(text);
+};
+
+// Helper to linkify just the value part (after the label)
+const linkifyValue = (text: string): JSX.Element => {
+  // Check for specific patterns
+  const emailMatch = text.match(/^[\w.-]+@[\w.-]+\.[a-z]{2,}$/);
+  if (emailMatch) {
+    return (
+      <a
+        href={`mailto:${text}`}
+        style={{ color: "#05CE91", textDecoration: "underline" }}
+      >
+        {text}
+      </a>
+    );
+  }
+
+  const githubMatch = text.match(/^github\.com\/([\w\/]+)$/);
+  if (githubMatch) {
+    return (
+      <a
+        href={`https://${text}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ color: "#05CE91", textDecoration: "underline" }}
+      >
+        {text}
+      </a>
+    );
+  }
+
+  const telegramMatch = text.match(/^t\.me\/([\w]+)$/);
+  if (telegramMatch) {
+    return (
+      <a
+        href={`https://${text}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ color: "#05CE91", textDecoration: "underline" }}
+      >
+        {text}
+      </a>
+    );
+  }
+
+  const linkedinMatch = text.match(/^linkedin\.com\/([\w\/]+)$/);
+  if (linkedinMatch) {
+    return (
+      <a
+        href={`https://${text}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ color: "#05CE91", textDecoration: "underline" }}
+      >
+        {text}
+      </a>
+    );
+  }
+
+  const matrixMatch = text.match(/^@[\w:.]+$/);
+  if (matrixMatch) {
+    return (
+      <a
+        href={`https://matrix.to/#/${text}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ color: "#05CE91", textDecoration: "underline" }}
+      >
+        {text}
+      </a>
+    );
+  }
+
+  const xMatch = text.match(/^[\w]+$/);
+  if (xMatch && text.length > 2 && !text.includes("@") && !text.includes(".")) {
+    // Simple username without special chars, likely X handle
+    return (
+      <a
+        href={`https://x.com/${text}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ color: "#05CE91", textDecoration: "underline" }}
+      >
+        {text}
+      </a>
+    );
+  }
+
+  // No pattern matched, return as plain text
+  return <>{text}</>;
+};
+
 const Cat: React.FC = () => {
   const { arg } = useContext(termContext);
   const originalArg = arg[0]?.toLowerCase() || "";
@@ -100,7 +213,11 @@ const Cat: React.FC = () => {
 
   return (
     <Wrapper data-testid="cat">
-      <pre style={{ whiteSpace: "pre-wrap", lineHeight: "1.6" }}>{content}</pre>
+      <pre style={{ whiteSpace: "pre-wrap", lineHeight: "1.6" }}>
+        {content.split("\n").map((line, idx, arr) => (
+          <div key={crypto.randomUUID()}>{linkifyText(line)}</div>
+        ))}
+      </pre>
     </Wrapper>
   );
 };

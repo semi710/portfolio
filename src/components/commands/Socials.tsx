@@ -49,7 +49,19 @@ const Socials: React.FC = () => {
           <Cmd>{`${id}. ${title}`}</Cmd>
           {generateTabs(tab)}
           <CmdDesc>
-            {handle} — {url}
+            {handle} —{" "}
+            <a
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: "inherit",
+                textDecoration: "underline",
+              }}
+              onClick={e => e.stopPropagation()}
+            >
+              {url}
+            </a>
           </CmdDesc>
         </CmdList>
       ))}
@@ -91,7 +103,7 @@ const socials = [
     id: 5,
     title: "Twitter/X",
     handle: "@niksingh710",
-    url: "https://twitter.com/niksingh710",
+    url: "https://x.com/niksingh710",
     tab: 2,
   },
   {

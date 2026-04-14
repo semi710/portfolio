@@ -74,12 +74,15 @@ Package Maintainer @ Arch/NixOS (2020 - 2025)
     GitHub:   github.com/semi710
     Telegram: t.me/niksingh710
     Matrix:   @niksingh710:matrix.org
-    Twitter:  @niksingh710
+    X:        niksingh710
     LinkedIn: linkedin.com/in/niksingh710`,
 };
 
 // Export file list for ls command (txt files only)
-export const availableFiles = Object.keys(fileContents).map(name => ({
-  name,
-  type: "txt" as const,
-}));
+export const availableFiles = [
+  ...Object.keys(fileContents).map(name => ({
+    name,
+    type: "txt" as const,
+  })),
+  { name: "resume", type: "pdf" as const },
+];

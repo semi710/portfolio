@@ -64,6 +64,22 @@ const Projects: React.FC = () => {
               Impact: {metrics}
             </div>
           )}
+          {url && (
+            <div style={{ marginTop: "4px" }}>
+              <a
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: "inherit",
+                  textDecoration: "underline",
+                }}
+                onClick={e => e.stopPropagation()}
+              >
+                {url}
+              </a>
+            </div>
+          )}
         </ProjectContainer>
       ))}
       <Usage cmd="projects" marginY />

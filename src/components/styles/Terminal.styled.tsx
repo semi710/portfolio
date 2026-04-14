@@ -49,6 +49,7 @@ export const Input = styled.input`
 
   @media (max-width: 550px) {
     min-width: 85%;
+    font-size: 0.8rem;
   }
 `;
 

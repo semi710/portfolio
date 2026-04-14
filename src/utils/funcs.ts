@@ -165,24 +165,32 @@ export const argTab = (
 
   // 10) if input is 'cat '
   else if (inputVal === "cat ") {
-    ["skills.txt", "philosophy.txt", "experience.txt", "contact.txt"].forEach(
-      t => {
-        hintsCmds = [...hintsCmds, t];
-      }
-    );
+    [
+      "skills.txt",
+      "philosophy.txt",
+      "experience.txt",
+      "contact.txt",
+      "resume.pdf",
+    ].forEach(t => {
+      hintsCmds = [...hintsCmds, t];
+    });
     return hintsCmds;
   }
 
   // 11) if input starts with 'cat ' + filename
   else if (_.startsWith(inputVal, "cat ")) {
     const partialFilename = _.split(inputVal, " ")[1] || "";
-    ["skills.txt", "philosophy.txt", "experience.txt", "contact.txt"].forEach(
-      t => {
-        if (_.startsWith(t, partialFilename)) {
-          hintsCmds = [...hintsCmds, t];
-        }
+    [
+      "skills.txt",
+      "philosophy.txt",
+      "experience.txt",
+      "contact.txt",
+      "resume.pdf",
+    ].forEach(t => {
+      if (_.startsWith(t, partialFilename)) {
+        hintsCmds = [...hintsCmds, t];
       }
-    );
+    });
     return hintsCmds;
   }
 

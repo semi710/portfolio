@@ -5,8 +5,13 @@ export const OutputContainer = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  margin-top: 0.25rem;
-  margin-bottom: 0.75rem;
+  margin-top: 0.125rem;
+  margin-bottom: 0.375rem;
+
+  @media (max-width: 550px) {
+    margin-top: 0.125rem;
+    margin-bottom: 0.25rem;
+  }
 `;
 
 export const UsageDiv = styled.div<{ marginY?: boolean }>`
